@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>QuickSight Dashboard &#8212; BMW Predictive Maintenance System  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Results and Business Insights" href="results.html" />
+    <link rel="prev" title="Athena Analytics" href="athena_analytics.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="quicksight-dashboard">
+<h1>QuickSight Dashboard<a class="headerlink" href="#quicksight-dashboard" title="Link to this heading">¶</a></h1>
+<section id="dashboard-overview">
+<h2>Dashboard Overview<a class="headerlink" href="#dashboard-overview" title="Link to this heading">¶</a></h2>
+<p>The BMW Predictive Maintenance Dashboard provides an operational view of
+vehicle maintenance risk using the curated Athena dataset.</p>
+</section>
+<section id="dashboard-name">
+<h2>Dashboard Name<a class="headerlink" href="#dashboard-name" title="Link to this heading">¶</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>BMW Predictive Maintenance Dashboard
+</pre></div>
+</div>
+</section>
+<section id="dashboard-features">
+<h2>Dashboard Features<a class="headerlink" href="#dashboard-features" title="Link to this heading">¶</a></h2>
+<section id="total-vehicles-monitored">
+<h3>Total Vehicles Monitored<a class="headerlink" href="#total-vehicles-monitored" title="Link to this heading">¶</a></h3>
+<p>Displays the total number of vehicles in the analytical dataset. The completed
+project monitors 210 vehicles.</p>
+</section>
+<section id="risk-category-distribution">
+<h3>Risk Category Distribution<a class="headerlink" href="#risk-category-distribution" title="Link to this heading">¶</a></h3>
+<p>Shows the count or percentage of High, Medium, and Low risk vehicles.</p>
+</section>
+<section id="top-10-high-risk-vehicles">
+<h3>Top 10 High-Risk Vehicles<a class="headerlink" href="#top-10-high-risk-vehicles" title="Link to this heading">¶</a></h3>
+<p>Lists vehicles with the highest risk scores so service teams can prioritize
+urgent reviews.</p>
+</section>
+<section id="average-risk-score-by-region">
+<h3>Average Risk Score by Region<a class="headerlink" href="#average-risk-score-by-region" title="Link to this heading">¶</a></h3>
+<p>Compares average risk scores geographically and may reveal differences in
+operating conditions, usage, or maintenance practices.</p>
+</section>
+<section id="primary-risk-factors-analysis">
+<h3>Primary Risk Factors Analysis<a class="headerlink" href="#primary-risk-factors-analysis" title="Link to this heading">¶</a></h3>
+<p>Highlights high mileage, frequent faults, frequent maintenance, and temperature
+trends as contributors to maintenance risk.</p>
+</section>
+</section>
+<section id="recommended-dashboard-layout">
+<h2>Recommended Dashboard Layout<a class="headerlink" href="#recommended-dashboard-layout" title="Link to this heading">¶</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Row 1: Total Vehicles | High-Risk Vehicles | Average Risk Score
+Row 2: Risk Category Distribution | Average Risk Score by Region
+Row 3: Top 10 High-Risk Vehicles
+Row 4: Primary Risk Factors Analysis
+</pre></div>
+</div>
+</section>
+<section id="useful-filters">
+<h2>Useful Filters<a class="headerlink" href="#useful-filters" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Risk category</p></li>
+<li><p>Region</p></li>
+<li><p>Vehicle identifier</p></li>
+<li><p>Risk-score range</p></li>
+<li><p>Mileage range</p></li>
+</ul>
+</section>
+<section id="business-usage">
+<h2>Business Usage<a class="headerlink" href="#business-usage" title="Link to this heading">¶</a></h2>
+<p>Maintenance managers can identify vehicles requiring review, compare regions,
+investigate risk causes, plan preventive work, and monitor fleet risk trends.</p>
+</section>
+<section id="governance">
+<h2>Governance<a class="headerlink" href="#governance" title="Link to this heading">¶</a></h2>
+<p>Access should be restricted to authorized users. Dataset refreshes should
+follow successful ETL runs, and calculated fields and filters should be
+documented and reviewed.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BMW Predictive Maintenance System</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws_infrastructure.html">AWS Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etl_pipeline.html">ETL Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="athena_analytics.html">Athena Analytics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">QuickSight Dashboard</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#dashboard-overview">Dashboard Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dashboard-name">Dashboard Name</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dashboard-features">Dashboard Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#recommended-dashboard-layout">Recommended Dashboard Layout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#useful-filters">Useful Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#business-usage">Business Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#governance">Governance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">Results and Business Insights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="athena_analytics.html" title="previous chapter">Athena Analytics</a></li>
+      <li>Next: <a href="results.html" title="next chapter">Results and Business Insights</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, BMW Predictive Maintenance Project.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/quicksight_dashboard.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

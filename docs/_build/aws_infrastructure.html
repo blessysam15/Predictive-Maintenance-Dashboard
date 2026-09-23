@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>AWS Infrastructure &#8212; BMW Predictive Maintenance System  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ETL Pipeline" href="etl_pipeline.html" />
+    <link rel="prev" title="System Architecture" href="architecture.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="aws-infrastructure">
+<h1>AWS Infrastructure<a class="headerlink" href="#aws-infrastructure" title="Link to this heading">¶</a></h1>
+<section id="infrastructure-as-code">
+<h2>Infrastructure as Code<a class="headerlink" href="#infrastructure-as-code" title="Link to this heading">¶</a></h2>
+<p>Terraform defines and provisions the core AWS resources, making the
+infrastructure repeatable, reviewable, and maintainable across environments.</p>
+</section>
+<section id="amazon-s3-bucket">
+<h2>Amazon S3 Bucket<a class="headerlink" href="#amazon-s3-bucket" title="Link to this heading">¶</a></h2>
+<p>The project uses the bucket:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>bmw-maintenance-risk-score-blessy-2026
+</pre></div>
+</div>
+<p>The bucket stores curated risk-score outputs. Terraform applies the project
+and environment tags <code class="docutils literal notranslate"><span class="pre">BMW</span> <span class="pre">Predictive</span> <span class="pre">Maintenance</span></code> and <code class="docutils literal notranslate"><span class="pre">Dev</span></code>.</p>
+<p>Curated objects are stored at:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>curated/maintenance_risk_score.csv
+curated/top10_risk_vehicles.csv
+</pre></div>
+</div>
+</section>
+<section id="cloudwatch-log-group">
+<h2>CloudWatch Log Group<a class="headerlink" href="#cloudwatch-log-group" title="Link to this heading">¶</a></h2>
+<p>The log group <code class="docutils literal notranslate"><span class="pre">/aws/bmw-maintenance</span></code> is configured with seven days of log
+retention to support operational monitoring while controlling storage costs.</p>
+</section>
+<section id="iam-role">
+<h2>IAM Role<a class="headerlink" href="#iam-role" title="Link to this heading">¶</a></h2>
+<p>The project defines the role <code class="docutils literal notranslate"><span class="pre">bmw-maintenance-role</span></code>. Its trust policy allows
+the Amazon EC2 service to assume the role. Production deployments should add
+only the minimum permissions required by the workload.</p>
+</section>
+<section id="example-terraform-workflow">
+<h2>Example Terraform Workflow<a class="headerlink" href="#example-terraform-workflow" title="Link to this heading">¶</a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">terraform init</span>
+<span class="go">terraform validate</span>
+<span class="go">terraform plan</span>
+<span class="go">terraform apply</span>
+</pre></div>
+</div>
+</section>
+<section id="security-considerations">
+<h2>Security Considerations<a class="headerlink" href="#security-considerations" title="Link to this heading">¶</a></h2>
+<p>Recommended production practices include least-privilege IAM policies, S3
+encryption, versioning, blocked public access, protected Terraform state,
+separate environments, resource tagging, and avoiding credentials in source
+code.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BMW Predictive Maintenance System</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">System Architecture</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">AWS Infrastructure</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#infrastructure-as-code">Infrastructure as Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#amazon-s3-bucket">Amazon S3 Bucket</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cloudwatch-log-group">CloudWatch Log Group</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#iam-role">IAM Role</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-terraform-workflow">Example Terraform Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#security-considerations">Security Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="etl_pipeline.html">ETL Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="athena_analytics.html">Athena Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quicksight_dashboard.html">QuickSight Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">Results and Business Insights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="architecture.html" title="previous chapter">System Architecture</a></li>
+      <li>Next: <a href="etl_pipeline.html" title="next chapter">ETL Pipeline</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, BMW Predictive Maintenance Project.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/aws_infrastructure.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

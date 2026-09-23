@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Results and Business Insights &#8212; BMW Predictive Maintenance System  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Conclusion" href="conclusion.html" />
+    <link rel="prev" title="QuickSight Dashboard" href="quicksight_dashboard.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="results-and-business-insights">
+<h1>Results and Business Insights<a class="headerlink" href="#results-and-business-insights" title="Link to this heading">¶</a></h1>
+<section id="processing-results">
+<h2>Processing Results<a class="headerlink" href="#processing-results" title="Link to this heading">¶</a></h2>
+<p>The completed solution processed 210 vehicles and generated curated analytical
+outputs for reporting.</p>
+</section>
+<section id="generated-files">
+<h2>Generated Files<a class="headerlink" href="#generated-files" title="Link to this heading">¶</a></h2>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>maintenance_risk_score.csv
+top10_risk_vehicles.csv
+</pre></div>
+</div>
+<p>The files were uploaded to the curated S3 layer and made available to Athena
+and QuickSight.</p>
+</section>
+<section id="risk-categories">
+<h2>Risk Categories<a class="headerlink" href="#risk-categories" title="Link to this heading">¶</a></h2>
+<p>Vehicles are classified as High, Medium, or Low risk. This converts technical
+measurements into an operational prioritization framework.</p>
+</section>
+<section id="business-insights">
+<h2>Business Insights<a class="headerlink" href="#business-insights" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Maintenance prioritization:</strong> High-risk vehicles can be reviewed first.</p></li>
+<li><dl class="simple">
+<dt><strong>Reliability monitoring:</strong> Frequent faults and repeated maintenance can</dt><dd><p>reveal recurring problems.</p>
+</dd>
+</dl>
+</li>
+<li><p><strong>Usage and wear analysis:</strong> High mileage can indicate accumulated wear.</p></li>
+<li><dl class="simple">
+<dt><strong>Operating-condition monitoring:</strong> Temperature trends can highlight abnormal</dt><dd><p>conditions.</p>
+</dd>
+</dl>
+</li>
+<li><p><strong>Regional comparison:</strong> Average regional risk can support resource planning.</p></li>
+</ul>
+</section>
+<section id="decision-support">
+<h2>Decision Support<a class="headerlink" href="#decision-support" title="Link to this heading">¶</a></h2>
+<p>The system moves maintenance analysis from a purely reactive process toward a
+risk-based process. Teams can focus attention on vehicles most likely to need
+intervention instead of treating all vehicles equally.</p>
+</section>
+<section id="interpretation-considerations">
+<h2>Interpretation Considerations<a class="headerlink" href="#interpretation-considerations" title="Link to this heading">¶</a></h2>
+<p>Risk scores are decision-support indicators, not guaranteed failure
+predictions. They should be considered alongside engineering judgment,
+inspection results, vehicle age, operating conditions, and service history.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BMW Predictive Maintenance System</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws_infrastructure.html">AWS Infrastructure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="etl_pipeline.html">ETL Pipeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="athena_analytics.html">Athena Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quicksight_dashboard.html">QuickSight Dashboard</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Results and Business Insights</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#processing-results">Processing Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generated-files">Generated Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#risk-categories">Risk Categories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#business-insights">Business Insights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#decision-support">Decision Support</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interpretation-considerations">Interpretation Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="quicksight_dashboard.html" title="previous chapter">QuickSight Dashboard</a></li>
+      <li>Next: <a href="conclusion.html" title="next chapter">Conclusion</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, BMW Predictive Maintenance Project.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/results.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

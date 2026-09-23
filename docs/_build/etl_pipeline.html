@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>ETL Pipeline &#8212; BMW Predictive Maintenance System  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Athena Analytics" href="athena_analytics.html" />
+    <link rel="prev" title="AWS Infrastructure" href="aws_infrastructure.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="etl-pipeline">
+<h1>ETL Pipeline<a class="headerlink" href="#etl-pipeline" title="Link to this heading">¶</a></h1>
+<section id="pipeline-purpose">
+<h2>Pipeline Purpose<a class="headerlink" href="#pipeline-purpose" title="Link to this heading">¶</a></h2>
+<p>The ETL pipeline converts raw vehicle data into a curated maintenance-risk
+dataset suitable for reporting and decision-making.</p>
+</section>
+<section id="data-validation">
+<h2>1. Data Validation<a class="headerlink" href="#data-validation" title="Link to this heading">¶</a></h2>
+<p>Python validates file availability, required columns, data types, null values,
+duplicates, vehicle identifiers, and numeric ranges before Spark processing.</p>
+</section>
+<section id="data-loading">
+<h2>2. Data Loading<a class="headerlink" href="#data-loading" title="Link to this heading">¶</a></h2>
+<p>Validated CSV files are loaded into PySpark DataFrames. Explicit schemas are
+recommended so identifiers, dates, telemetry, and numeric values are handled
+consistently.</p>
+</section>
+<section id="data-integration">
+<h2>3. Data Integration<a class="headerlink" href="#data-integration" title="Link to this heading">¶</a></h2>
+<p>The datasets are joined using a common vehicle identifier. The integrated data
+combines vehicle attributes, maintenance history, fault information, and
+telemetry measurements.</p>
+</section>
+<section id="feature-engineering">
+<h2>4. Feature Engineering<a class="headerlink" href="#feature-engineering" title="Link to this heading">¶</a></h2>
+<p>Vehicle-level features include total mileage, fault count, maintenance count,
+temperature trends, and regional attributes.</p>
+</section>
+<section id="risk-score-calculation">
+<h2>5. Risk Score Calculation<a class="headerlink" href="#risk-score-calculation" title="Link to this heading">¶</a></h2>
+<p>A conceptual scoring model is:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>risk_score = mileage_component + fault_component
+                                 + maintenance_component + temperature_component
+</pre></div>
+</div>
+<p>Components may be normalized or weighted so that the score reflects business
+priorities and comparable measurement scales.</p>
+</section>
+<section id="risk-categorization">
+<h2>6. Risk Categorization<a class="headerlink" href="#risk-categorization" title="Link to this heading">¶</a></h2>
+<p>Scores are mapped to <code class="docutils literal notranslate"><span class="pre">High</span></code>, <code class="docutils literal notranslate"><span class="pre">Medium</span></code>, or <code class="docutils literal notranslate"><span class="pre">Low</span></code> risk categories for
+operational use.</p>
+</section>
+<section id="output-generation">
+<h2>7. Output Generation<a class="headerlink" href="#output-generation" title="Link to this heading">¶</a></h2>
+<p>The pipeline produces <code class="docutils literal notranslate"><span class="pre">maintenance_risk_score.csv</span></code> for vehicle-level
+analysis and <code class="docutils literal notranslate"><span class="pre">top10_risk_vehicles.csv</span></code> for maintenance prioritization.</p>
+</section>
+<section id="s3-publication">
+<h2>8. S3 Publication<a class="headerlink" href="#s3-publication" title="Link to this heading">¶</a></h2>
+<p>The outputs are published to the curated S3 layer:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>s3://bmw-maintenance-risk-score-blessy-2026/curated/maintenance_risk_score.csv
+s3://bmw-maintenance-risk-score-blessy-2026/curated/top10_risk_vehicles.csv
+</pre></div>
+</div>
+</section>
+<section id="data-quality-and-reproducibility">
+<h2>Data Quality and Reproducibility<a class="headerlink" href="#data-quality-and-reproducibility" title="Link to this heading">¶</a></h2>
+<p>The pipeline should use deterministic transformations, preserve source data,
+validate row counts after joins, check for duplicate vehicle records, compare
+output counts with expected totals, and log processing metrics.</p>
+</section>
+<section id="processing-result">
+<h2>Processing Result<a class="headerlink" href="#processing-result" title="Link to this heading">¶</a></h2>
+<p>The completed pipeline processed 210 vehicles and generated the curated
+outputs used by Athena and QuickSight.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">BMW Predictive Maintenance System</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">System Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="aws_infrastructure.html">AWS Infrastructure</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ETL Pipeline</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#pipeline-purpose">Pipeline Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-validation">1. Data Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-loading">2. Data Loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-integration">3. Data Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#feature-engineering">4. Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#risk-score-calculation">5. Risk Score Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#risk-categorization">6. Risk Categorization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#output-generation">7. Output Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#s3-publication">8. S3 Publication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-quality-and-reproducibility">Data Quality and Reproducibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#processing-result">Processing Result</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="athena_analytics.html">Athena Analytics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quicksight_dashboard.html">QuickSight Dashboard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">Results and Business Insights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="aws_infrastructure.html" title="previous chapter">AWS Infrastructure</a></li>
+      <li>Next: <a href="athena_analytics.html" title="next chapter">Athena Analytics</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2026, BMW Predictive Maintenance Project.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/etl_pipeline.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
