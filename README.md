@@ -6,8 +6,6 @@ The BMW Predictive Maintenance System is an end-to-end data engineering and anal
 
 The project processes vehicle datasets using Python and PySpark, calculates maintenance risk scores, stores curated outputs in Amazon S3, performs analytics using Amazon Athena, and visualizes insights through Amazon QuickSight.
 
----
-
 ## Business Objective
 
 The primary objective of this project is to:
@@ -18,11 +16,9 @@ The primary objective of this project is to:
 - Determine primary factors contributing to maintenance risks.
 - Enable proactive and data-driven maintenance planning.
 
----
-
 ## Technology Stack
 
-### Programming & Processing
+### Programming and Processing
 
 - Python
 - PySpark
@@ -43,36 +39,32 @@ The primary objective of this project is to:
 
 - Sphinx
 
----
-
 ## System Architecture
 
 ```text
 Vehicle CSV Files
-        │
-        ▼
+        |
+        v
 Python Data Validation
-        │
-        ▼
+        |
+        v
 PySpark ETL Processing
-        │
-        ▼
+        |
+        v
 Risk Score Calculation
-        │
-        ▼
+        |
+        v
 Curated CSV Generation
-        │
-        ▼
+        |
+        v
 Amazon S3
-        │
-        ▼
+        |
+        v
 Amazon Athena
-        │
-        ▼
+        |
+        v
 Amazon QuickSight Dashboard
 ```
-
----
 
 ## Project Components
 
@@ -105,14 +97,12 @@ Vehicles are classified into:
 
 ### Output Generation
 
-Curated datasets generated:
+The following curated datasets are generated:
 
 ```text
 maintenance_risk_score.csv
 top10_risk_vehicles.csv
 ```
-
----
 
 ## AWS Infrastructure
 
@@ -135,8 +125,6 @@ bmw-maintenance-role
 ```text
 /aws/bmw-maintenance
 ```
-
----
 
 ## Athena Analytics
 
@@ -162,91 +150,85 @@ maintenance_risk_score
 
 ```sql
 SELECT COUNT(*)
-FROM maintenance_risk_scor*;
+FROM maintenance_risk_score;
 ```
 
----
-
-## QuickSight Dashboar*
+## QuickSight Dashboard
 
 ### Dashboard Name
 
 ```text
-BMW *redictive Maintenance Dashboard
-``*
+BMW Predictive Maintenance Dashboard
+```
 
 ### Dashboard Features
 
-#### Tot*l Vehicles Monitored
+#### Total Vehicles Monitored
 
-Displays the*total number of vehicles processed*
+Displays the total number of vehicles processed.
 
 #### Risk Category Distribution
-*Visualizes distribution across:
 
--*High Risk
+Visualizes the distribution across:
+
+- High Risk
 - Medium Risk
-- Low Risk*
-#### Top 10 High Risk Vehicles
+- Low Risk
 
-I*entifies vehicles requiring immedi*te maintenance attention.
+#### Top 10 High-Risk Vehicles
 
-#### Av*rage Risk Score by Region
+Identifies vehicles requiring immediate maintenance attention.
 
-Provide* regional maintenance risk insight*.
+#### Average Risk Score by Region
 
-#### Primary Risk Factors Analy*is
+Provides regional maintenance risk insights.
 
-Shows the leading causes of ma*ntenance risks:
+#### Primary Risk Factors Analysis
+
+Shows the leading causes of maintenance risks:
 
 - High Mileage
-- *requent Faults
-- Frequent Maintena*ce
+- Frequent Faults
+- Frequent Maintenance
 - Temperature Trend
 
-### Dashbo*rd Link
+### Dashboard Link
 
-```text
-https://us-east-1*quicksight.aws.amazon.com/sn/accou*t/tamizh-sk/accounts/532404260630/*ashboards/65fb5bca-c7a3-45c5-a412-*10a14f38b1c
-```
+[Open the BMW Predictive Maintenance Dashboard](https://us-east-1.quicksight.aws.amazon.com/sn/account/tamizh-sk/accounts/532404260630/dashboards/65fb5bca-c7a3-45c5-a412-010a14f38b1c)
 
-> Note: The dashb*ard is accessible only to users wi*h access to the corresponding AWS *uickSight account and permissions.*
----
+> Note: The dashboard is accessible only to users with access to the corresponding AWS QuickSight account and permissions.
 
 ## Project Results
 
-### Key *indings
+### Key Findings
 
-- Total vehicles analyzed* 210
-- High Mileage is the most si*nificant maintenance risk factor.
-* High-risk vehicles can be identif*ed proactively.
-- Regional pattern* in maintenance risks can be analy*ed.
-- Business users can monitor f*eet health through interactive das*boards.
+- Total vehicles analyzed: 210
+- High mileage is the most significant maintenance risk factor.
+- High-risk vehicles can be identified proactively.
+- Regional patterns in maintenance risks can be analyzed.
+- Business users can monitor fleet health through interactive dashboards.
 
 ### Business Benefits
 
-- *educed vehicle downtime
-- Improved*fleet monitoring
-- Data-driven mai*tenance planning
-- Better operatio*al efficiency
-- Proactive maintena*ce scheduling
+- Reduced vehicle downtime
+- Improved fleet monitoring
+- Data-driven maintenance planning
+- Better operational efficiency
+- Proactive maintenance scheduling
 
----
+## Documentation
 
-## Documentati*n
-
-Project documentation has been *enerated using Sphinx and includes*
+Project documentation has been generated using Sphinx and includes:
 
 - Introduction
 - Architecture
-- *WS Infrastructure
+- AWS Infrastructure
 - ETL Pipeline
--*Athena Analytics
-- QuickSight Dash*oard
+- Athena Analytics
+- QuickSight Dashboard
 - Results
 - Conclusion
 
----
 ## CI/CD Pipeline
 
 GitHub Actions has been implemented to automate project validation and documentation verification.
@@ -271,36 +253,30 @@ The CI/CD pipeline automatically executes whenever code is pushed to the reposit
 - Builds Sphinx documentation automatically
 - Reduces manual verification effort
 
----
-
-*# Repository Structure
+## Repository Structure
 
 ```text
-bm*-predictive-maintenance
-│
-├── terr*form/
+bmw-predictive-maintenance/
+|
+├── terraform/
 ├── data/
 ├── docs/
-├── scre*nshots/
+├── submission_screenshots/
 ├── src/
-├── maintenance_r*sk_score.csv
-├── top10_risk_vehicl*s.csv
+├── maintenance_risk_score.csv
+├── top10_risk_vehicles.csv
 └── README.md
 ```
 
----
+## Conclusion
 
-## C*nclusion
+The BMW Predictive Maintenance System successfully demonstrates an end-to-end cloud-based analytics solution using AWS services. The system processes vehicle datasets, calculates maintenance risk scores, stores curated data in Amazon S3, performs analytics using Amazon Athena, and delivers actionable business insights through Amazon QuickSight dashboards.
 
-The BMW Predictive Maint*nance System successfully demonstr*tes an end-to-end cloud-based anal*tics solution using AWS services. *he system processes vehicle datase*s, calculates maintenance risk sco*es, stores curated data in Amazon *3, performs analytics using Amazon*Athena, and delivers actionable bu*iness insights through Amazon Quic*Sight dashboards.
-
-This solution e*ables proactive maintenance planni*g and supports data-driven decision-making for vehicle fleet management.
-
----
+This solution enables proactive maintenance planning and supports data-driven decision-making for vehicle fleet management.
 
 ## Author
 
-**Blessy Sam**
+Blessy Sam
 
 BMW Predictive Maintenance System
 
