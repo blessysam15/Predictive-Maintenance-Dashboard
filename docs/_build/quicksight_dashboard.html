@@ -35,73 +35,80 @@
             
   <section id="quicksight-dashboard">
 <h1>QuickSight Dashboard<a class="headerlink" href="#quicksight-dashboard" title="Link to this heading">¶</a></h1>
-<section id="dashboard-overview">
-<h2>Dashboard Overview<a class="headerlink" href="#dashboard-overview" title="Link to this heading">¶</a></h2>
-<p>The BMW Predictive Maintenance Dashboard provides an operational view of
-vehicle maintenance risk using the curated Athena dataset.</p>
-</section>
+<p>The BMW Predictive Maintenance Dashboard presents curated Athena data as an
+operational view for maintenance teams.</p>
 <section id="dashboard-name">
 <h2>Dashboard Name<a class="headerlink" href="#dashboard-name" title="Link to this heading">¶</a></h2>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>BMW Predictive Maintenance Dashboard
 </pre></div>
 </div>
 </section>
-<section id="dashboard-features">
-<h2>Dashboard Features<a class="headerlink" href="#dashboard-features" title="Link to this heading">¶</a></h2>
-<section id="total-vehicles-monitored">
-<h3>Total Vehicles Monitored<a class="headerlink" href="#total-vehicles-monitored" title="Link to this heading">¶</a></h3>
-<p>Displays the total number of vehicles in the analytical dataset. The completed
-project monitors 210 vehicles.</p>
+<section id="dashboard-screenshot">
+<h2>Dashboard Screenshot<a class="headerlink" href="#dashboard-screenshot" title="Link to this heading">¶</a></h2>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/01_dashboard.png"><img alt="BMW Predictive Maintenance Dashboard" src="_images/01_dashboard.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-text">BMW Predictive Maintenance Dashboard showing the project’s key risk
+monitoring and prioritization views.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 </section>
-<section id="risk-category-distribution">
-<h3>Risk Category Distribution<a class="headerlink" href="#risk-category-distribution" title="Link to this heading">¶</a></h3>
-<p>Shows the count or percentage of High, Medium, and Low risk vehicles.</p>
-</section>
-<section id="top-10-high-risk-vehicles">
-<h3>Top 10 High-Risk Vehicles<a class="headerlink" href="#top-10-high-risk-vehicles" title="Link to this heading">¶</a></h3>
-<p>Lists vehicles with the highest risk scores so service teams can prioritize
-urgent reviews.</p>
-</section>
-<section id="average-risk-score-by-region">
-<h3>Average Risk Score by Region<a class="headerlink" href="#average-risk-score-by-region" title="Link to this heading">¶</a></h3>
-<p>Compares average risk scores geographically and may reveal differences in
-operating conditions, usage, or maintenance practices.</p>
-</section>
-<section id="primary-risk-factors-analysis">
-<h3>Primary Risk Factors Analysis<a class="headerlink" href="#primary-risk-factors-analysis" title="Link to this heading">¶</a></h3>
-<p>Highlights high mileage, frequent faults, frequent maintenance, and temperature
-trends as contributors to maintenance risk.</p>
-</section>
-</section>
-<section id="recommended-dashboard-layout">
-<h2>Recommended Dashboard Layout<a class="headerlink" href="#recommended-dashboard-layout" title="Link to this heading">¶</a></h2>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Row 1: Total Vehicles | High-Risk Vehicles | Average Risk Score
-Row 2: Risk Category Distribution | Average Risk Score by Region
-Row 3: Top 10 High-Risk Vehicles
-Row 4: Primary Risk Factors Analysis
-</pre></div>
-</div>
-</section>
-<section id="useful-filters">
-<h2>Useful Filters<a class="headerlink" href="#useful-filters" title="Link to this heading">¶</a></h2>
+<section id="visuals-and-business-value">
+<h2>Visuals and Business Value<a class="headerlink" href="#visuals-and-business-value" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Risk category</p></li>
-<li><p>Region</p></li>
-<li><p>Vehicle identifier</p></li>
-<li><p>Risk-score range</p></li>
-<li><p>Mileage range</p></li>
+<li><dl class="simple">
+<dt><strong>Total Vehicles Monitored</strong></dt><dd><ul>
+<li><p><strong>Purpose:</strong> Shows the size of the analytical fleet.</p></li>
+<li><p><strong>Business value:</strong> Establishes the reporting scope for maintenance teams.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Risk Category Distribution</strong></dt><dd><ul>
+<li><p><strong>Purpose:</strong> Compares High, Medium, and Low risk vehicles.</p></li>
+<li><p><strong>Business value:</strong> Supports workload prioritization.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Top 10 High-Risk Vehicles</strong></dt><dd><ul>
+<li><p><strong>Purpose:</strong> Lists vehicles with the highest risk scores.</p></li>
+<li><p><strong>Business value:</strong> Directs urgent service reviews.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Average Risk Score by Region</strong></dt><dd><ul>
+<li><p><strong>Purpose:</strong> Compares risk across operating regions.</p></li>
+<li><p><strong>Business value:</strong> Supports regional resource planning.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Primary Risk Factors Analysis</strong></dt><dd><ul>
+<li><dl class="simple">
+<dt><strong>Purpose:</strong> Highlights mileage, faults, maintenance, and temperature</dt><dd><p>trends.</p>
+</dd>
+</dl>
+</li>
+<li><p><strong>Business value:</strong> Helps teams investigate likely causes of risk.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </section>
-<section id="business-usage">
-<h2>Business Usage<a class="headerlink" href="#business-usage" title="Link to this heading">¶</a></h2>
-<p>Maintenance managers can identify vehicles requiring review, compare regions,
-investigate risk causes, plan preventive work, and monitor fleet risk trends.</p>
-</section>
-<section id="governance">
-<h2>Governance<a class="headerlink" href="#governance" title="Link to this heading">¶</a></h2>
-<p>Access should be restricted to authorized users. Dataset refreshes should
-follow successful ETL runs, and calculated fields and filters should be
-documented and reviewed.</p>
+<section id="filters">
+<h2>Filters<a class="headerlink" href="#filters" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Risk category and region</p></li>
+<li><p>Vehicle identifier</p></li>
+<li><p>Risk-score and mileage ranges</p></li>
+</ul>
 </section>
 </section>
 
@@ -139,13 +146,10 @@ documented and reviewed.</p>
 <li class="toctree-l1"><a class="reference internal" href="etl_pipeline.html">ETL Pipeline</a></li>
 <li class="toctree-l1"><a class="reference internal" href="athena_analytics.html">Athena Analytics</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">QuickSight Dashboard</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#dashboard-overview">Dashboard Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dashboard-name">Dashboard Name</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#dashboard-features">Dashboard Features</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#recommended-dashboard-layout">Recommended Dashboard Layout</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#useful-filters">Useful Filters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#business-usage">Business Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#governance">Governance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dashboard-screenshot">Dashboard Screenshot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visuals-and-business-value">Visuals and Business Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filters">Filters</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="results.html">Results and Business Insights</a></li>

@@ -34,42 +34,14 @@
             
   <section id="conclusion">
 <h1>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">¶</a></h1>
-<section id="project-summary">
-<h2>Project Summary<a class="headerlink" href="#project-summary" title="Link to this heading">¶</a></h2>
-<p>The BMW Predictive Maintenance System demonstrates a complete cloud-based
-analytics workflow for identifying vehicle maintenance risk. It validates
-source data, processes records with PySpark, calculates risk scores, stores
-curated outputs in Amazon S3, exposes the data through Amazon Athena, and
-presents insights in Amazon QuickSight.</p>
-<p>The project processed 210 vehicles and used mileage, fault frequency,
-maintenance frequency, and temperature trends to identify risk.</p>
-</section>
-<section id="key-benefits">
-<h2>Key Benefits<a class="headerlink" href="#key-benefits" title="Link to this heading">¶</a></h2>
-<p>The solution provides a repeatable data-processing workflow, centralized
-curated storage, serverless analysis, interactive reporting, and Terraform-
-managed infrastructure for proactive maintenance planning.</p>
-</section>
-<section id="future-enhancements">
-<h2>Future Enhancements<a class="headerlink" href="#future-enhancements" title="Link to this heading">¶</a></h2>
-<ul class="simple">
-<li><p>Integrate real-time telemetry with Amazon Kinesis or AWS IoT.</p></li>
-<li><p>Schedule ETL using Amazon EventBridge, AWS Glue, or Step Functions.</p></li>
-<li><p>Add supervised machine-learning models trained on confirmed failures.</p></li>
-<li><p>Monitor model accuracy, drift, false positives, and false negatives.</p></li>
-<li><p>Convert outputs to partitioned, compressed Parquet datasets.</p></li>
-<li><p>Add stronger encryption, private networking, and centralized audit logging.</p></li>
-<li><p>Send high-risk alerts through Amazon SNS or AWS Lambda.</p></li>
-<li><p>Integrate predictions with maintenance scheduling and work-order systems.</p></li>
-</ul>
-</section>
-<section id="final-conclusion">
-<h2>Final Conclusion<a class="headerlink" href="#final-conclusion" title="Link to this heading">¶</a></h2>
-<p>This capstone project shows how cloud services, distributed processing,
-infrastructure as code, and business intelligence can be combined to improve
-vehicle reliability, reduce unplanned downtime, and support data-driven
-maintenance decisions.</p>
-</section>
+<p>The BMW Predictive Maintenance System builds a complete vehicle-risk workflow:
+Python validates source data, PySpark transforms and scores records, Amazon S3
+stores curated outputs, Athena supports SQL analysis, and QuickSight presents
+the results. Terraform provisions the supporting AWS infrastructure.</p>
+<p>The solution processed 210 vehicles and turns mileage, faults, maintenance
+frequency, temperature trends, and regional data into actionable maintenance
+priorities. It provides a concise foundation for proactive fleet planning and
+data-driven service decisions.</p>
 </section>
 
 
@@ -107,13 +79,7 @@ maintenance decisions.</p>
 <li class="toctree-l1"><a class="reference internal" href="athena_analytics.html">Athena Analytics</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quicksight_dashboard.html">QuickSight Dashboard</a></li>
 <li class="toctree-l1"><a class="reference internal" href="results.html">Results and Business Insights</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Conclusion</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#project-summary">Project Summary</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#key-benefits">Key Benefits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#future-enhancements">Future Enhancements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#final-conclusion">Final Conclusion</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Conclusion</a></li>
 </ul>
 
 <div class="relations">

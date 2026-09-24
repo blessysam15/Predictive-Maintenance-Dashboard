@@ -35,66 +35,43 @@
             
   <section id="etl-pipeline">
 <h1>ETL Pipeline<a class="headerlink" href="#etl-pipeline" title="Link to this heading">¶</a></h1>
-<section id="pipeline-purpose">
-<h2>Pipeline Purpose<a class="headerlink" href="#pipeline-purpose" title="Link to this heading">¶</a></h2>
-<p>The ETL pipeline converts raw vehicle data into a curated maintenance-risk
-dataset suitable for reporting and decision-making.</p>
+<p>The pipeline converts raw vehicle data into curated maintenance-risk outputs.</p>
+<section id="input-datasets">
+<h2>Input Datasets<a class="headerlink" href="#input-datasets" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Vehicle master data</p></li>
+<li><p>Historical maintenance records</p></li>
+<li><p>Telemetry measurements</p></li>
+<li><p>Fault records</p></li>
+</ul>
 </section>
-<section id="data-validation">
-<h2>1. Data Validation<a class="headerlink" href="#data-validation" title="Link to this heading">¶</a></h2>
-<p>Python validates file availability, required columns, data types, null values,
-duplicates, vehicle identifiers, and numeric ranges before Spark processing.</p>
+<section id="processing-steps">
+<h2>Processing Steps<a class="headerlink" href="#processing-steps" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Validation:</strong> Check file availability, required columns, data types, nulls,
+duplicates, identifiers, and numeric ranges.</p></li>
+<li><p><strong>Loading:</strong> Read validated CSV files into PySpark DataFrames.</p></li>
+<li><p><strong>Integration:</strong> Join datasets using the common vehicle identifier.</p></li>
+<li><p><strong>Feature engineering:</strong> Derive mileage, fault count, maintenance count,
+temperature trend, and regional attributes.</p></li>
+<li><p><strong>Risk scoring:</strong> Combine the indicators into a vehicle-level risk score.</p></li>
+<li><p><strong>Categorization:</strong> Map scores to <code class="docutils literal notranslate"><span class="pre">High</span></code>, <code class="docutils literal notranslate"><span class="pre">Medium</span></code>, or <code class="docutils literal notranslate"><span class="pre">Low</span></code> risk.</p></li>
+</ul>
 </section>
-<section id="data-loading">
-<h2>2. Data Loading<a class="headerlink" href="#data-loading" title="Link to this heading">¶</a></h2>
-<p>Validated CSV files are loaded into PySpark DataFrames. Explicit schemas are
-recommended so identifiers, dates, telemetry, and numeric values are handled
-consistently.</p>
-</section>
-<section id="data-integration">
-<h2>3. Data Integration<a class="headerlink" href="#data-integration" title="Link to this heading">¶</a></h2>
-<p>The datasets are joined using a common vehicle identifier. The integrated data
-combines vehicle attributes, maintenance history, fault information, and
-telemetry measurements.</p>
-</section>
-<section id="feature-engineering">
-<h2>4. Feature Engineering<a class="headerlink" href="#feature-engineering" title="Link to this heading">¶</a></h2>
-<p>Vehicle-level features include total mileage, fault count, maintenance count,
-temperature trends, and regional attributes.</p>
-</section>
-<section id="risk-score-calculation">
-<h2>5. Risk Score Calculation<a class="headerlink" href="#risk-score-calculation" title="Link to this heading">¶</a></h2>
-<p>A conceptual scoring model is:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>risk_score = mileage_component + fault_component
-                                 + maintenance_component + temperature_component
-</pre></div>
-</div>
-<p>Components may be normalized or weighted so that the score reflects business
-priorities and comparable measurement scales.</p>
-</section>
-<section id="risk-categorization">
-<h2>6. Risk Categorization<a class="headerlink" href="#risk-categorization" title="Link to this heading">¶</a></h2>
-<p>Scores are mapped to <code class="docutils literal notranslate"><span class="pre">High</span></code>, <code class="docutils literal notranslate"><span class="pre">Medium</span></code>, or <code class="docutils literal notranslate"><span class="pre">Low</span></code> risk categories for
-operational use.</p>
-</section>
-<section id="output-generation">
-<h2>7. Output Generation<a class="headerlink" href="#output-generation" title="Link to this heading">¶</a></h2>
-<p>The pipeline produces <code class="docutils literal notranslate"><span class="pre">maintenance_risk_score.csv</span></code> for vehicle-level
-analysis and <code class="docutils literal notranslate"><span class="pre">top10_risk_vehicles.csv</span></code> for maintenance prioritization.</p>
+<section id="output-files">
+<h2>Output Files<a class="headerlink" href="#output-files" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">maintenance_risk_score.csv</span></code> for vehicle-level analysis.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">top10_risk_vehicles.csv</span></code> for maintenance prioritization.</p></li>
+</ul>
 </section>
 <section id="s3-publication">
-<h2>8. S3 Publication<a class="headerlink" href="#s3-publication" title="Link to this heading">¶</a></h2>
+<h2>S3 Publication<a class="headerlink" href="#s3-publication" title="Link to this heading">¶</a></h2>
 <p>The outputs are published to the curated S3 layer:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>s3://bmw-maintenance-risk-score-blessy-2026/curated/maintenance_risk_score.csv
 s3://bmw-maintenance-risk-score-blessy-2026/curated/top10_risk_vehicles.csv
 </pre></div>
 </div>
-</section>
-<section id="data-quality-and-reproducibility">
-<h2>Data Quality and Reproducibility<a class="headerlink" href="#data-quality-and-reproducibility" title="Link to this heading">¶</a></h2>
-<p>The pipeline should use deterministic transformations, preserve source data,
-validate row counts after joins, check for duplicate vehicle records, compare
-output counts with expected totals, and log processing metrics.</p>
 </section>
 <section id="processing-result">
 <h2>Processing Result<a class="headerlink" href="#processing-result" title="Link to this heading">¶</a></h2>
@@ -135,16 +112,10 @@ outputs used by Athena and QuickSight.</p>
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">System Architecture</a></li>
 <li class="toctree-l1"><a class="reference internal" href="aws_infrastructure.html">AWS Infrastructure</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">ETL Pipeline</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#pipeline-purpose">Pipeline Purpose</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-validation">1. Data Validation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-loading">2. Data Loading</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-integration">3. Data Integration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#feature-engineering">4. Feature Engineering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#risk-score-calculation">5. Risk Score Calculation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#risk-categorization">6. Risk Categorization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#output-generation">7. Output Generation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#s3-publication">8. S3 Publication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#data-quality-and-reproducibility">Data Quality and Reproducibility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#input-datasets">Input Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#processing-steps">Processing Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#output-files">Output Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#s3-publication">S3 Publication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#processing-result">Processing Result</a></li>
 </ul>
 </li>

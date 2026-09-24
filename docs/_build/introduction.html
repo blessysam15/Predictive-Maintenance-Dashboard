@@ -35,57 +35,32 @@
             
   <section id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h1>
-<section id="business-context">
-<h2>Business Context<a class="headerlink" href="#business-context" title="Link to this heading">¶</a></h2>
-<p>Unexpected vehicle failures can increase repair costs, reduce vehicle
-availability, and negatively affect customer satisfaction. Predictive
-maintenance helps organizations identify vehicles that may require attention
-before a serious failure occurs.</p>
-<p>The BMW Predictive Maintenance System analyzes historical and operational
-vehicle data and transforms it into actionable risk classifications for
-maintenance planning and operational decision-making.</p>
+<section id="project-overview">
+<h2>Project Overview<a class="headerlink" href="#project-overview" title="Link to this heading">¶</a></h2>
+<p>The BMW Predictive Maintenance System is an end-to-end analytics solution that
+converts vehicle, maintenance, fault, and telemetry data into maintenance-risk
+classifications for proactive fleet planning.</p>
 </section>
-<section id="project-objectives">
-<h2>Project Objectives<a class="headerlink" href="#project-objectives" title="Link to this heading">¶</a></h2>
-<p>The project objectives are to:</p>
+<section id="business-objective">
+<h2>Business Objective<a class="headerlink" href="#business-objective" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>Validate vehicle and maintenance source data.</p></li>
-<li><p>Combine multiple operational datasets into a unified analytical model.</p></li>
-<li><p>Calculate a maintenance risk score for each vehicle.</p></li>
-<li><p>Classify vehicles as high, medium, or low risk.</p></li>
-<li><p>Publish curated results to Amazon S3.</p></li>
-<li><p>Query the results using Amazon Athena.</p></li>
-<li><p>Present business insights through Amazon QuickSight.</p></li>
-<li><p>Provision core AWS resources with Terraform.</p></li>
-<li><p>Provide reproducible project documentation.</p></li>
+<li><p>Identify vehicles requiring priority maintenance review.</p></li>
+<li><p>Combine operational datasets into a vehicle-level analytical model.</p></li>
+<li><p>Classify vehicles as <code class="docutils literal notranslate"><span class="pre">High</span></code>, <code class="docutils literal notranslate"><span class="pre">Medium</span></code>, or <code class="docutils literal notranslate"><span class="pre">Low</span></code> risk.</p></li>
+<li><p>Publish curated results for Athena and QuickSight analysis.</p></li>
+<li><p>Support regional comparison and maintenance workload planning.</p></li>
 </ul>
 </section>
-<section id="prediction-methodology">
-<h2>Prediction Methodology<a class="headerlink" href="#prediction-methodology" title="Link to this heading">¶</a></h2>
-<p>The system evaluates four primary indicators:</p>
+<section id="technology-stack">
+<h2>Technology Stack<a class="headerlink" href="#technology-stack" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><strong>High mileage:</strong> Indicates accumulated mechanical wear.</p></li>
-<li><p><strong>Frequent faults:</strong> May indicate recurring reliability problems.</p></li>
-<li><p><strong>Frequent maintenance:</strong> May indicate unresolved or recurring issues.</p></li>
-<li><dl class="simple">
-<dt><strong>Temperature trend:</strong> May reveal overheating or abnormal operating</dt><dd><p>conditions.</p>
-</dd>
-</dl>
-</li>
+<li><p><strong>Python and PySpark:</strong> Validation, transformation, joins, and risk scoring.</p></li>
+<li><p><strong>Amazon S3:</strong> Curated output storage.</p></li>
+<li><p><strong>Amazon Athena:</strong> SQL analysis of curated data.</p></li>
+<li><p><strong>Amazon QuickSight:</strong> Dashboard reporting and business insights.</p></li>
+<li><p><strong>Terraform:</strong> Repeatable AWS infrastructure provisioning.</p></li>
+<li><p><strong>Sphinx:</strong> Project documentation.</p></li>
 </ul>
-<p>The indicators are combined into a risk score and mapped to business-friendly
-categories:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">High</span></code>: Immediate or prioritized maintenance review.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Medium</span></code>: Additional monitoring and planned maintenance.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Low</span></code>: Routine monitoring and standard scheduling.</p></li>
-</ul>
-</section>
-<section id="business-value">
-<h2>Business Value<a class="headerlink" href="#business-value" title="Link to this heading">¶</a></h2>
-<p>The solution supports maintenance prioritization, fleet reliability analysis,
-service-center workload planning, reduced unplanned downtime, and data-driven
-operational decisions.</p>
 </section>
 </section>
 
@@ -118,10 +93,9 @@ operational decisions.</p>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#business-context">Business Context</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#project-objectives">Project Objectives</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#prediction-methodology">Prediction Methodology</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#business-value">Business Value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#project-overview">Project Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#business-objective">Business Objective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#technology-stack">Technology Stack</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">System Architecture</a></li>

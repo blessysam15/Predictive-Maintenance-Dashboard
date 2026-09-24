@@ -35,86 +35,45 @@
             
   <section id="athena-analytics">
 <h1>Athena Analytics<a class="headerlink" href="#athena-analytics" title="Link to this heading">¶</a></h1>
-<section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
-<p>Amazon Athena provides serverless SQL analysis over curated files stored in
-Amazon S3. It supports interactive analysis without operating a database
-server.</p>
-</section>
+<p>Athena queries the curated S3 files for risk reporting.</p>
 <section id="database-and-table">
 <h2>Database and Table<a class="headerlink" href="#database-and-table" title="Link to this heading">¶</a></h2>
 <p>The project uses database <code class="docutils literal notranslate"><span class="pre">bmw_predictive_maintenance</span></code> and table
 <code class="docutils literal notranslate"><span class="pre">maintenance_risk_score</span></code>.</p>
 </section>
-<section id="example-table-definition">
-<h2>Example Table Definition<a class="headerlink" href="#example-table-definition" title="Link to this heading">¶</a></h2>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">bmw_predictive_maintenance</span><span class="p">;</span>
-
-<span class="k">CREATE</span><span class="w"> </span><span class="k">EXTERNAL</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span>
-<span class="n">bmw_predictive_maintenance</span><span class="p">.</span><span class="n">maintenance_risk_score</span><span class="w"> </span><span class="p">(</span>
-<span class="w">         </span><span class="n">vehicle_id</span><span class="w"> </span><span class="n">string</span><span class="p">,</span>
-<span class="w">         </span><span class="n">region</span><span class="w"> </span><span class="n">string</span><span class="p">,</span>
-<span class="w">         </span><span class="n">mileage</span><span class="w"> </span><span class="n">double</span><span class="p">,</span>
-<span class="w">         </span><span class="n">fault_count</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span>
-<span class="w">         </span><span class="n">maintenance_count</span><span class="w"> </span><span class="nb">bigint</span><span class="p">,</span>
-<span class="w">         </span><span class="n">temperature_trend</span><span class="w"> </span><span class="n">double</span><span class="p">,</span>
-<span class="w">         </span><span class="n">risk_score</span><span class="w"> </span><span class="n">double</span><span class="p">,</span>
-<span class="w">         </span><span class="n">risk_category</span><span class="w"> </span><span class="n">string</span>
-<span class="p">)</span>
-<span class="k">ROW</span><span class="w"> </span><span class="n">FORMAT</span><span class="w"> </span><span class="n">SERDE</span><span class="w"> </span><span class="s1">'org.apache.hadoop.hive.serde2.OpenCSVSerde'</span>
-<span class="k">WITH</span><span class="w"> </span><span class="n">SERDEPROPERTIES</span><span class="w"> </span><span class="p">(</span>
-<span class="w">         </span><span class="s1">'separatorChar'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">','</span><span class="p">,</span>
-<span class="w">         </span><span class="s1">'quoteChar'</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'"'</span>
-<span class="p">)</span>
-<span class="k">LOCATION</span><span class="w"> </span><span class="s1">'s3://bmw-maintenance-risk-score-blessy-2026/curated/'</span>
-<span class="n">TBLPROPERTIES</span><span class="w"> </span><span class="p">(</span><span class="s1">'skip.header.line.count'</span><span class="o">=</span><span class="s1">'1'</span><span class="p">);</span>
-</pre></div>
-</div>
-</section>
-<section id="risk-category-distribution">
-<h2>Risk Category Distribution<a class="headerlink" href="#risk-category-distribution" title="Link to this heading">¶</a></h2>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">risk_category</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">vehicle_count</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">bmw_predictive_maintenance</span><span class="p">.</span><span class="n">maintenance_risk_score</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">risk_category</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">vehicle_count</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
-</pre></div>
-</div>
-</section>
-<section id="top-ten-high-risk-vehicles">
-<h2>Top Ten High-Risk Vehicles<a class="headerlink" href="#top-ten-high-risk-vehicles" title="Link to this heading">¶</a></h2>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">vehicle_id</span><span class="p">,</span><span class="w"> </span><span class="n">region</span><span class="p">,</span><span class="w"> </span><span class="n">risk_score</span><span class="p">,</span><span class="w"> </span><span class="n">risk_category</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">bmw_predictive_maintenance</span><span class="p">.</span><span class="n">maintenance_risk_score</span>
-<span class="k">WHERE</span><span class="w"> </span><span class="n">risk_category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">'High'</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">risk_score</span><span class="w"> </span><span class="k">DESC</span>
-<span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
-</pre></div>
-</div>
-</section>
-<section id="average-risk-by-region">
-<h2>Average Risk by Region<a class="headerlink" href="#average-risk-by-region" title="Link to this heading">¶</a></h2>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">region</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">vehicle_count</span><span class="p">,</span>
-<span class="w">                 </span><span class="k">AVG</span><span class="p">(</span><span class="n">risk_score</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">average_risk_score</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">bmw_predictive_maintenance</span><span class="p">.</span><span class="n">maintenance_risk_score</span>
-<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">region</span>
-<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">average_risk_score</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
-</pre></div>
-</div>
-</section>
-<section id="primary-risk-factors">
-<h2>Primary Risk Factors<a class="headerlink" href="#primary-risk-factors" title="Link to this heading">¶</a></h2>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">AVG</span><span class="p">(</span><span class="n">mileage</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">average_mileage</span><span class="p">,</span>
-<span class="w">                 </span><span class="k">AVG</span><span class="p">(</span><span class="n">fault_count</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">average_fault_count</span><span class="p">,</span>
-<span class="w">                 </span><span class="k">AVG</span><span class="p">(</span><span class="n">maintenance_count</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">average_maintenance_count</span><span class="p">,</span>
-<span class="w">                 </span><span class="k">AVG</span><span class="p">(</span><span class="n">temperature_trend</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">average_temperature_trend</span>
+<section id="sample-query">
+<h2>Sample Query<a class="headerlink" href="#sample-query" title="Link to this heading">¶</a></h2>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
 <span class="k">FROM</span><span class="w"> </span><span class="n">bmw_predictive_maintenance</span><span class="p">.</span><span class="n">maintenance_risk_score</span><span class="p">;</span>
 </pre></div>
 </div>
+<p>The query confirms a record count of <strong>210 vehicles</strong> in the analytical table.</p>
 </section>
-<section id="analytics-benefits">
-<h2>Analytics Benefits<a class="headerlink" href="#analytics-benefits" title="Link to this heading">¶</a></h2>
-<p>Athena enables on-demand SQL analysis, direct S3 querying, low operational
-overhead, and integration with QuickSight. Parquet, compression, partitioning,
-and workgroup controls can improve production performance and cost.</p>
+<section id="record-count">
+<h2>Record Count<a class="headerlink" href="#record-count" title="Link to this heading">¶</a></h2>
+<p>The Athena query results confirm that the curated dataset is available for
+serverless analysis. The record-count output provides a quick validation of
+the number of vehicles processed by the pipeline.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/02_athena_record_count.png"><img alt="Amazon Athena record count query result" src="_images/02_athena_record_count.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-text">Athena record-count result confirming 210 processed vehicles.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="data-preview">
+<h2>Data Preview<a class="headerlink" href="#data-preview" title="Link to this heading">¶</a></h2>
+<p>A sample data preview makes it possible to inspect the analytical columns,
+including vehicle identifiers, regions, risk scores, and risk categories,
+before using the data in downstream reporting.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="_images/06_athena_data_preview.png"><img alt="Amazon Athena maintenance risk data preview" src="_images/06_athena_data_preview.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-text">Preview of maintenance risk records queried through Amazon Athena.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The preview verifies the fields used by the dashboard, including vehicle ID,
+region, risk score, and risk category.</p>
 </section>
 </section>
 
@@ -151,14 +110,10 @@ and workgroup controls can improve production performance and cost.</p>
 <li class="toctree-l1"><a class="reference internal" href="aws_infrastructure.html">AWS Infrastructure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="etl_pipeline.html">ETL Pipeline</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Athena Analytics</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#database-and-table">Database and Table</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#example-table-definition">Example Table Definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#risk-category-distribution">Risk Category Distribution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#top-ten-high-risk-vehicles">Top Ten High-Risk Vehicles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#average-risk-by-region">Average Risk by Region</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#primary-risk-factors">Primary Risk Factors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#analytics-benefits">Analytics Benefits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sample-query">Sample Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#record-count">Record Count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-preview">Data Preview</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="quicksight_dashboard.html">QuickSight Dashboard</a></li>

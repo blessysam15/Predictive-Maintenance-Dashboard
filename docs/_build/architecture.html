@@ -37,7 +37,8 @@
 <h1>System Architecture<a class="headerlink" href="#system-architecture" title="Link to this heading">¶</a></h1>
 <section id="architecture-overview">
 <h2>Architecture Overview<a class="headerlink" href="#architecture-overview" title="Link to this heading">¶</a></h2>
-<p>The system follows a layered data-processing architecture:</p>
+<p>The workflow moves validated CSV data through PySpark processing into AWS
+analytics and reporting:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Vehicle CSV Files
         |
         v
@@ -60,42 +61,57 @@ Amazon QuickSight Dashboard
 </pre></div>
 </div>
 </section>
-<section id="source-layer">
-<h2>Source Layer<a class="headerlink" href="#source-layer" title="Link to this heading">¶</a></h2>
-<p>CSV files provide vehicle information, historical maintenance records,
-telemetry measurements, and fault records.</p>
+<section id="implementation-flow">
+<h2>Implementation Flow<a class="headerlink" href="#implementation-flow" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Input:</strong> Vehicle master, maintenance, telemetry, and fault CSV files.</p></li>
+<li><dl class="simple">
+<dt><strong>Validation:</strong> Python checks file structure, required fields, identifiers,</dt><dd><p>nulls, duplicates, and data types.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Transformation:</strong> PySpark joins datasets by vehicle identifier and derives</dt><dd><p>mileage, fault, maintenance, temperature, and regional metrics.</p>
+</dd>
+</dl>
+</li>
+<li><p><strong>Scoring:</strong> The pipeline calculates a risk score and assigns a risk category.</p></li>
+<li><dl class="simple">
+<dt><strong>Storage and reporting:</strong> Curated CSV files are published to S3 for Athena</dt><dd><p>queries and QuickSight dashboards.</p>
+</dd>
+</dl>
+</li>
+</ul>
 </section>
-<section id="validation-layer">
-<h2>Validation Layer<a class="headerlink" href="#validation-layer" title="Link to this heading">¶</a></h2>
-<p>Python validation confirms that files exist, required columns are available,
-data types are valid, identifiers are consistent, and missing or duplicate
-records are identified before transformation.</p>
-</section>
-<section id="transformation-layer">
-<h2>Transformation Layer<a class="headerlink" href="#transformation-layer" title="Link to this heading">¶</a></h2>
-<p>PySpark joins the validated datasets using a common vehicle identifier. It
-creates vehicle-level metrics, derives risk indicators, calculates risk
-scores, and assigns risk categories.</p>
-</section>
-<section id="curated-storage-layer">
-<h2>Curated Storage Layer<a class="headerlink" href="#curated-storage-layer" title="Link to this heading">¶</a></h2>
-<p>Amazon S3 stores the analytical outputs:</p>
+<section id="curated-outputs">
+<h2>Curated Outputs<a class="headerlink" href="#curated-outputs" title="Link to this heading">¶</a></h2>
+<p>Amazon S3 stores:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">curated/maintenance_risk_score.csv</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">curated/top10_risk_vehicles.csv</span></code></p></li>
 </ul>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/03_s3_curated_files.png"><img alt="Curated files stored in Amazon S3" src="_images/03_s3_curated_files.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-text">Curated maintenance risk files stored in the Amazon S3 output location.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 </section>
-<section id="analytics-and-visualization-layers">
-<h2>Analytics and Visualization Layers<a class="headerlink" href="#analytics-and-visualization-layers" title="Link to this heading">¶</a></h2>
-<p>Amazon Athena provides serverless SQL access to the curated S3 data. Amazon
-QuickSight connects to the analytical data and presents metrics, charts, and
-tables in the BMW Predictive Maintenance Dashboard.</p>
+<section id="infrastructure-evidence">
+<h2>Infrastructure Evidence<a class="headerlink" href="#infrastructure-evidence" title="Link to this heading">¶</a></h2>
+<p>Terraform provisions the S3 bucket, IAM role, and CloudWatch log group used by
+the solution.</p>
+<figure class="align-center" id="id2">
+<a class="reference internal image-reference" href="_images/05_terraform_resources.png"><img alt="AWS resources provisioned with Terraform" src="_images/05_terraform_resources.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-text">AWS resources provisioned through the project’s Terraform configuration.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 </section>
-<section id="design-benefits">
-<h2>Design Benefits<a class="headerlink" href="#design-benefits" title="Link to this heading">¶</a></h2>
-<p>This architecture separates ingestion, processing, storage, and reporting. It
-also provides repeatable infrastructure, scalable processing, serverless
-querying, and self-service business intelligence.</p>
+<section id="review-summary">
+<h2>Review Summary<a class="headerlink" href="#review-summary" title="Link to this heading">¶</a></h2>
+<p>The architecture separates validation, transformation, storage, analysis, and
+visualization so each stage can be tested and reviewed independently.</p>
 </section>
 </section>
 
@@ -130,12 +146,10 @@ querying, and self-service business intelligence.</p>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">System Architecture</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#architecture-overview">Architecture Overview</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#source-layer">Source Layer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#validation-layer">Validation Layer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#transformation-layer">Transformation Layer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#curated-storage-layer">Curated Storage Layer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#analytics-and-visualization-layers">Analytics and Visualization Layers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#design-benefits">Design Benefits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation-flow">Implementation Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#curated-outputs">Curated Outputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#infrastructure-evidence">Infrastructure Evidence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#review-summary">Review Summary</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="aws_infrastructure.html">AWS Infrastructure</a></li>

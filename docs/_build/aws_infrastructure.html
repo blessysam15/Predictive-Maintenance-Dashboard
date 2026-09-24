@@ -35,51 +35,38 @@
             
   <section id="aws-infrastructure">
 <h1>AWS Infrastructure<a class="headerlink" href="#aws-infrastructure" title="Link to this heading">¶</a></h1>
-<section id="infrastructure-as-code">
-<h2>Infrastructure as Code<a class="headerlink" href="#infrastructure-as-code" title="Link to this heading">¶</a></h2>
-<p>Terraform defines and provisions the core AWS resources, making the
-infrastructure repeatable, reviewable, and maintainable across environments.</p>
-</section>
-<section id="amazon-s3-bucket">
-<h2>Amazon S3 Bucket<a class="headerlink" href="#amazon-s3-bucket" title="Link to this heading">¶</a></h2>
-<p>The project uses the bucket:</p>
+<p>Terraform provisions the core AWS resources and keeps the deployment
+repeatable and reviewable.</p>
+<section id="amazon-s3">
+<h2>Amazon S3<a class="headerlink" href="#amazon-s3" title="Link to this heading">¶</a></h2>
+<p>Bucket:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>bmw-maintenance-risk-score-blessy-2026
 </pre></div>
 </div>
-<p>The bucket stores curated risk-score outputs. Terraform applies the project
-and environment tags <code class="docutils literal notranslate"><span class="pre">BMW</span> <span class="pre">Predictive</span> <span class="pre">Maintenance</span></code> and <code class="docutils literal notranslate"><span class="pre">Dev</span></code>.</p>
-<p>Curated objects are stored at:</p>
+<p>Curated objects:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>curated/maintenance_risk_score.csv
 curated/top10_risk_vehicles.csv
 </pre></div>
 </div>
 </section>
-<section id="cloudwatch-log-group">
-<h2>CloudWatch Log Group<a class="headerlink" href="#cloudwatch-log-group" title="Link to this heading">¶</a></h2>
-<p>The log group <code class="docutils literal notranslate"><span class="pre">/aws/bmw-maintenance</span></code> is configured with seven days of log
-retention to support operational monitoring while controlling storage costs.</p>
+<section id="iam">
+<h2>IAM<a class="headerlink" href="#iam" title="Link to this heading">¶</a></h2>
+<p>Role: <code class="docutils literal notranslate"><span class="pre">bmw-maintenance-role</span></code></p>
 </section>
-<section id="iam-role">
-<h2>IAM Role<a class="headerlink" href="#iam-role" title="Link to this heading">¶</a></h2>
-<p>The project defines the role <code class="docutils literal notranslate"><span class="pre">bmw-maintenance-role</span></code>. Its trust policy allows
-the Amazon EC2 service to assume the role. Production deployments should add
-only the minimum permissions required by the workload.</p>
+<section id="cloudwatch">
+<h2>CloudWatch<a class="headerlink" href="#cloudwatch" title="Link to this heading">¶</a></h2>
+<p>Log group: <code class="docutils literal notranslate"><span class="pre">/aws/bmw-maintenance</span></code></p>
 </section>
-<section id="example-terraform-workflow">
-<h2>Example Terraform Workflow<a class="headerlink" href="#example-terraform-workflow" title="Link to this heading">¶</a></h2>
+<section id="terraform-workflow">
+<h2>Terraform Workflow<a class="headerlink" href="#terraform-workflow" title="Link to this heading">¶</a></h2>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">terraform init</span>
 <span class="go">terraform validate</span>
 <span class="go">terraform plan</span>
 <span class="go">terraform apply</span>
 </pre></div>
 </div>
-</section>
-<section id="security-considerations">
-<h2>Security Considerations<a class="headerlink" href="#security-considerations" title="Link to this heading">¶</a></h2>
-<p>Recommended production practices include least-privilege IAM policies, S3
-encryption, versioning, blocked public access, protected Terraform state,
-separate environments, resource tagging, and avoiding credentials in source
-code.</p>
+<p>The infrastructure supports the S3 storage, monitoring, and access needs of
+the predictive-maintenance workflow.</p>
 </section>
 </section>
 
@@ -114,12 +101,10 @@ code.</p>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="architecture.html">System Architecture</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">AWS Infrastructure</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#infrastructure-as-code">Infrastructure as Code</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#amazon-s3-bucket">Amazon S3 Bucket</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cloudwatch-log-group">CloudWatch Log Group</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#iam-role">IAM Role</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#example-terraform-workflow">Example Terraform Workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#security-considerations">Security Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#amazon-s3">Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#iam">IAM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cloudwatch">CloudWatch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#terraform-workflow">Terraform Workflow</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="etl_pipeline.html">ETL Pipeline</a></li>

@@ -37,8 +37,15 @@
 <h1>Results and Business Insights<a class="headerlink" href="#results-and-business-insights" title="Link to this heading">¶</a></h1>
 <section id="processing-results">
 <h2>Processing Results<a class="headerlink" href="#processing-results" title="Link to this heading">¶</a></h2>
-<p>The completed solution processed 210 vehicles and generated curated analytical
-outputs for reporting.</p>
+<ul class="simple">
+<li><p><strong>Total vehicles processed:</strong> 210</p></li>
+<li><dl class="simple">
+<dt><strong>Curated outputs:</strong> <code class="docutils literal notranslate"><span class="pre">maintenance_risk_score.csv</span></code> and</dt><dd><p><code class="docutils literal notranslate"><span class="pre">top10_risk_vehicles.csv</span></code></p>
+</dd>
+</dl>
+</li>
+<li><p><strong>Consumers:</strong> Amazon Athena and Amazon QuickSight</p></li>
+</ul>
 </section>
 <section id="generated-files">
 <h2>Generated Files<a class="headerlink" href="#generated-files" title="Link to this heading">¶</a></h2>
@@ -46,43 +53,40 @@ outputs for reporting.</p>
 top10_risk_vehicles.csv
 </pre></div>
 </div>
-<p>The files were uploaded to the curated S3 layer and made available to Athena
-and QuickSight.</p>
+<p>The files were uploaded to the curated S3 layer for analysis and reporting.</p>
+<figure class="align-center" id="id1">
+<a class="reference internal image-reference" href="_images/04_sphinx_documentation.png"><img alt="Generated Sphinx project documentation" src="_images/04_sphinx_documentation.png" style="width: 800px;" /></a>
+<figcaption>
+<p><span class="caption-text">Sphinx documentation generated for the BMW Predictive Maintenance System.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
 </section>
-<section id="risk-categories">
-<h2>Risk Categories<a class="headerlink" href="#risk-categories" title="Link to this heading">¶</a></h2>
-<p>Vehicles are classified as High, Medium, or Low risk. This converts technical
-measurements into an operational prioritization framework.</p>
-</section>
-<section id="business-insights">
-<h2>Business Insights<a class="headerlink" href="#business-insights" title="Link to this heading">¶</a></h2>
+<section id="key-insights">
+<h2>Key Insights<a class="headerlink" href="#key-insights" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><strong>Maintenance prioritization:</strong> High-risk vehicles can be reviewed first.</p></li>
 <li><dl class="simple">
-<dt><strong>Reliability monitoring:</strong> Frequent faults and repeated maintenance can</dt><dd><p>reveal recurring problems.</p>
+<dt><strong>Risk distribution:</strong> Vehicles are grouped into High, Medium, and Low risk</dt><dd><p>for operational prioritization.</p>
 </dd>
 </dl>
 </li>
-<li><p><strong>Usage and wear analysis:</strong> High mileage can indicate accumulated wear.</p></li>
 <li><dl class="simple">
-<dt><strong>Operating-condition monitoring:</strong> Temperature trends can highlight abnormal</dt><dd><p>conditions.</p>
+<dt><strong>Top-risk vehicles:</strong> The top-ten output identifies vehicles requiring</dt><dd><p>immediate review.</p>
 </dd>
 </dl>
 </li>
-<li><p><strong>Regional comparison:</strong> Average regional risk can support resource planning.</p></li>
+<li><dl class="simple">
+<dt><strong>Main risk factors:</strong> High mileage, frequent faults, frequent maintenance,</dt><dd><p>and temperature trends contribute to risk.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>Regional insights:</strong> Average risk by region supports resource planning and</dt><dd><p>comparison of operating conditions.</p>
+</dd>
+</dl>
+</li>
 </ul>
-</section>
-<section id="decision-support">
-<h2>Decision Support<a class="headerlink" href="#decision-support" title="Link to this heading">¶</a></h2>
-<p>The system moves maintenance analysis from a purely reactive process toward a
-risk-based process. Teams can focus attention on vehicles most likely to need
-intervention instead of treating all vehicles equally.</p>
-</section>
-<section id="interpretation-considerations">
-<h2>Interpretation Considerations<a class="headerlink" href="#interpretation-considerations" title="Link to this heading">¶</a></h2>
-<p>Risk scores are decision-support indicators, not guaranteed failure
-predictions. They should be considered alongside engineering judgment,
-inspection results, vehicle age, operating conditions, and service history.</p>
+<p>Risk scores support maintenance decisions and should be reviewed alongside
+inspection results and service history.</p>
 </section>
 </section>
 
@@ -123,10 +127,7 @@ inspection results, vehicle age, operating conditions, and service history.</p>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Results and Business Insights</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#processing-results">Processing Results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#generated-files">Generated Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#risk-categories">Risk Categories</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#business-insights">Business Insights</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#decision-support">Decision Support</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#interpretation-considerations">Interpretation Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#key-insights">Key Insights</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
