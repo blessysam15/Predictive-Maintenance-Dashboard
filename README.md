@@ -268,6 +268,46 @@ bmw-predictive-maintenance/
 └── README.md
 ```
 
+## Project Outputs and Screenshots
+
+The following screenshots provide evidence of the project's key outputs, analytics workflow, cloud resources, and documentation.
+
+### QuickSight Dashboard
+
+The Amazon QuickSight dashboard presents maintenance risk insights, including vehicle risk categories, regional risk scores, and the primary factors contributing to maintenance risk.
+
+![BMW Predictive Maintenance QuickSight dashboard](submission_screenshots/01_dashboard.png)
+
+### Athena Record Count
+
+This screenshot shows the Amazon Athena query result confirming the number of processed records.
+
+![Amazon Athena record count](submission_screenshots/02_athena_record_count.png)
+
+### S3 Curated Files
+
+This view shows the curated output files stored in the Amazon S3 bucket.
+
+![Curated files stored in Amazon S3](submission_screenshots/03_s3_curated_files.png)
+
+### Sphinx Documentation
+
+This screenshot shows the generated Sphinx project documentation.
+
+![Generated Sphinx documentation](submission_screenshots/04_sphinx_documentation.png)
+
+### Terraform Resources
+
+This view shows the AWS resources provisioned using Terraform.
+
+![AWS resources provisioned with Terraform](submission_screenshots/05_terraform_resources.png)
+
+### Athena Data Preview
+
+This screenshot shows a preview of the maintenance risk data queried through Amazon Athena.
+
+![Amazon Athena data preview](submission_screenshots/06_athena_data_preview.png)
+
 ## Conclusion
 
 The BMW Predictive Maintenance System successfully demonstrates an end-to-end cloud-based analytics solution using AWS services. The system processes vehicle datasets, calculates maintenance risk scores, stores curated data in Amazon S3, performs analytics using Amazon Athena, and delivers actionable business insights through Amazon QuickSight dashboards.
